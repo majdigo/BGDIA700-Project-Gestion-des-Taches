@@ -6,7 +6,7 @@ BGDIA700-Project-Gestion-des-Taches/
 ├── setup.py
 ├── LICENSE
 │
-├── src/ (ou tasklib/ ou un autre nom pertinent pour le code source)
+├── code_projet/ (ou tasklib/ ou src ??)
 │   ├── __init__.py
 │   ├── main.py
 │   ├── models.py
@@ -16,14 +16,14 @@ BGDIA700-Project-Gestion-des-Taches/
 ├── tests/
 │   ├── __init__.py
 │   ├── test_models.py
-│   ├── ... (autres fichiers de test pour chaque module)
+│   ├── ... (selon les tests qu'on fera)
 │
 ├── docs/
-│   ├── ... (fichiers de configuration et sources pour Sphinx ou autre outil de documentation)
+│   ├── ... (fichiers de configuration et sources pour Sphinx ou autre outil de documentation, on decidera plus tard)
 │
 ├── logs/
-│   ├── ... (fichiers de logs générés)
+│   ├── ... (fichiers de logs générés apres tests et utilisation)
 │
 └── .github/
     ├── workflows/
-    └── ... (fichiers de configuration pour GitHub Actions)
+    └── ... (fichiers de configuration pour GitHub Actions, pour gerer le CI/CD workflows etc)
