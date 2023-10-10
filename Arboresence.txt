@@ -1,0 +1,29 @@
+BGDIA700-Project-Gestion-des-Taches/
+│
+├── README.md
+├── .gitignore
+├── requirements.txt
+├── setup.py
+├── LICENSE
+│
+├── src/ (ou tasklib/ ou un autre nom pertinent pour le code source)
+│   ├── __init__.py
+│   ├── main.py
+│   ├── models.py
+│   ├── exceptions.py
+│   └── cli.py
+│
+├── tests/
+│   ├── __init__.py
+│   ├── test_models.py
+│   ├── ... (autres fichiers de test pour chaque module)
+│
+├── docs/
+│   ├── ... (fichiers de configuration et sources pour Sphinx ou autre outil de documentation)
+│
+├── logs/
+│   ├── ... (fichiers de logs générés)
+│
+└── .github/
+    ├── workflows/
+    └── ... (fichiers de configuration pour GitHub Actions)
