@@ -37,7 +37,7 @@ class Task:
         Renvoie une représentation string de la tâche.
 
         Returns:
-            str: Représentation de la tâche incluant le titre, la description et le statut.
+            str: Représentation de la tâche (titre, description et statut)
         """
         status = 'Terminée' if self.completed else 'En attente'
         return f"{self.title} - {self.description} ({status})"
