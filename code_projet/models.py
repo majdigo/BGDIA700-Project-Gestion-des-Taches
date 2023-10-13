@@ -4,7 +4,7 @@ import datetime as dt
 class Task:
     task_dict = {}  # Create a task dictionary to store information
 
-    def __init__(self, nom, description, statuts='en cours'):
+    def __init__(self):
         """_summary_
 
         Args:
@@ -12,9 +12,9 @@ class Task:
             description (_type_): the description of the task
             statuts (str, optional): the status of task,default is 'en cours'.
         """
-        self.nom = nom
-        self.description = description
-        self.statuts = statuts
+        self.nom = ''
+        self.description = ''
+        self.statuts = 'en cours'
 
     @classmethod
     def add_task(cls, task, description=None, date=None):
@@ -59,12 +59,13 @@ class Task:
                 task_names.append(cls.task_dict[key]['nom'])
         return task_names
 
-Task.add_task('今晚打老虎', '去酒吧吃饭')
-Task.add_task('task1')
-Task.complete_task('task1')
+our_task=Task()
+our_task.add_task('今晚打老虎', '去酒吧吃饭')
+our_task.add_task('task1')
+our_task.complete_task('task1')
 # Task.add_task('task1')
-Task.add_task('今晚打老虎2', '去酒吧吃饭','2020-10-30')
+our_task.add_task('今晚打老虎2', '去酒吧吃饭','2020-10-30')
 
 
-print(Task.display())
-print(Task.task_dict)
+print(our_task.display())
+print(our_task.task_dict)
