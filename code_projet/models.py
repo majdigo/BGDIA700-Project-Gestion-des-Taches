@@ -57,15 +57,6 @@ class Task:
         for key in cls.task_dict.keys():
             if cls.task_dict[key]['statuts'] is not None and cls.task_dict[key]['statuts'] == 'en cours':
                 task_names.append(cls.task_dict[key]['nom'])
-        print (task_names)
-
-our_task=Task()
-our_task.add_task('今晚打老虎', '去酒吧吃饭')
-our_task.add_task('task1')
-our_task.complete_task('task1')
-# Task.add_task('task1')
-our_task.add_task('今晚打老虎2', '去酒吧吃饭','2020-10-30')
-
-
-our_task.display()
-# print(our_task.task_dict)
+        print (task_names)    
+  
+        
