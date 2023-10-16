@@ -6,12 +6,29 @@ Ce projet s'inscrit dans le cadre du cours "Big Data" visant à mettre en pratiq
 
 ## Bonnes Pratiques Adoptées
 
-Durant le développement de ce projet, nous avons adopté les bonnes pratiques suivantes :
+Lors du développement de ce projet, nous nous sommes appuyés sur plusieurs bonnes pratiques essentielles pour garantir la qualité, la fiabilité et la maintenabilité du code. Voici un aperçu de ces bonnes pratiques :
 
-- **Gestion de l'environnement de développement** : Utilisation d'un IDE adapté, gestion des environnements Python et utilisation efficace de Git.
-- **Écriture et structuration du code** : Respect des principes de la POO, utilisation de Git en CLI et respect des guidelines pep8.
-- **Code propre et qualitatif** : Mise en place de logs, sécurisation de l'application, documentation approfondie, optimisation et tests unitaires.
-- **Intégration Continue & Développement Continue (CI/CD)** : Mise en place d'un pipeline CI/CD, automatisation des tests et déploiements.
+### 1. **Gestion de l'Environnement de Développement**
+- **IDE Professionnel** : Utilisation d'un IDE adapté pour assurer un développement efficace et une détection rapide des erreurs.
+- **Environnements Python Isolés** : Utilisation d'environnements virtuels pour gérer les dépendances spécifiques au projet.
+- **Débogage Efficace** : Utilisation des fonctionnalités avancées de débogage de l'IDE pour résoudre rapidement les problèmes.
+
+### 2. **Structuration et Codage du Projet**
+- **Architecture Modulaire** : Le projet a été structuré de manière modulaire pour faciliter la maintenance et l'évolutivité.
+- **Programmation Orientée Objet** : Adoption de la POO pour une meilleure organisation du code et une réutilisation efficace des composants.
+- **Versionnage avec Git** : Utilisation de Git pour suivre les changements, collaborer efficacement et garantir l'intégrité du code.
+
+### 3. **Adoption des Standards et Sécurité**
+- **Conformité PEP8** : Le code est écrit selon les directives PEP8, assurant lisibilité et cohérence.
+- **Journalisation** : Mise en place d'une journalisation robuste pour suivre les opérations et détecter les anomalies.
+- **Sécurité** : Des mesures ont été prises pour minimiser les vulnérabilités et garantir la sécurité des données.
+- **Documentation** : Le code est bien documenté pour faciliter la compréhension et la collaboration.
+- **Optimisation** : Des techniques d'optimisation ont été adoptées pour garantir de bonnes performances.
+- **Tests Rigoureux** : Des tests unitaires ont été écrits pour s'assurer que chaque composant fonctionne comme prévu.
+
+### 4. **Intégration et Déploiement Continus**
+- **Pipeline CI/CD** : Mise en place d'un pipeline pour automatiser les tests et le déploiement, garantissant la qualité à chaque étape.
+- **Principes MLOps** : Adoption des meilleures pratiques de MLOps pour garantir une production fiable et évolutive.
 
 ## Installation
 
