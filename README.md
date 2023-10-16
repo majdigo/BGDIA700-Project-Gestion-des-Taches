@@ -1,31 +1,41 @@
-# BGDIA700 Project Gestion des Tâches
+# Projet Gestion des Tâches (To-Do List)
 
-Ce projet consiste à créer une bibliothèque Python pour la gestion des tâches personnelles (To-Do List).
+## Contexte Pédagogique
 
-## Structure du Projet
+Ce projet s'inscrit dans le cadre du cours "Big Data" visant à mettre en pratique les principes de développement Python pour la production. Il s'agit de créer une bibliothèque Python pour la gestion des tâches personnelles (To-Do List), en tenant compte des bonnes pratiques de développement.
 
-BGDIA700-Project-Gestion-des-Taches/
-├── .gitignore # Liste des fichiers/répertoires à ignorer pour Git
-├── Arboresence.txt # Description de l'arborescence du projet
-├── LICENSE # Licence du projet
-├── README.md # Ce fichier, avec la documentation initiale du projet
-├── requirements.txt # Dépendances Python du projet
-├── setup.py # Script pour empaqueter le projet en tant que module Python
-├── .github/
-│ └── workflows/ # Configuration pour GitHub Actions (CI/CD)
-├── code_projet/
-│ ├── cli.py # Interface en ligne de commande
-│ ├── exceptions.py # Exceptions personnalisées pour le projet
-│ ├── main.py # Point d'entrée principal du projet
-│ ├── models.py # Définitions des classes Task et TaskList
-│ └── init.py # Fichier pour faire du répertoire un package Python
-├── docs/ # Documentation du projet (par exemple, avec Sphinx)
-├── logs/
-│ └── log.log # Fichier de logs pour l'application
-└── tests/
-├── task_list.py # Tests pour la classe TaskList
-├── test_models.py # Tests pour les classes du fichier models.py
-└── init.py # Fichier pour faire du répertoire un package Python
+## Bonnes Pratiques Adoptées
+
+Durant le développement de ce projet, nous avons adopté les bonnes pratiques suivantes :
+
+- **Gestion de l'environnement de développement** : Utilisation d'un IDE adapté, gestion des environnements Python et utilisation efficace de Git.
+- **Écriture et structuration du code** : Respect des principes de la POO, utilisation de Git en CLI et respect des guidelines pep8.
+- **Code propre et qualitatif** : Mise en place de logs, sécurisation de l'application, documentation approfondie, optimisation et tests unitaires.
+- **Intégration Continue & Développement Continue (CI/CD)** : Mise en place d'un pipeline CI/CD, automatisation des tests et déploiements.
+
+## Installation
+
+Pour installer ce module, suivez les étapes suivantes :
+
+- **Étape 1 : Clonez ce dépôt**
+    ```
+    git clone [URL_DU_REPO]
+    ```
+
+- **Étape 2 : Accédez au dossier du projet**
+    ```
+    cd BGDIA700-Project-Gestion-des-Taches
+    ```
+
+- **Étape 3 : Installez les dépendances**
+    ```
+    pip install -r requirements.txt
+    ```
+
+## Utilisation
+
+Une fois installé, vous pouvez démarrer l'application avec la commande suivante :
+
 
 
 ## Comment commencer
@@ -34,14 +44,19 @@ BGDIA700-Project-Gestion-des-Taches/
 2. Installez les dépendances en utilisant `pip install -r requirements.txt`.
 3. Exécutez `main.py` pour démarrer l'application.
 
-## Contribution
-
-Si vous souhaitez contribuer au projet, veuillez suivre les directives suivantes :
-
-1. Créez une nouvelle branche pour votre fonctionnalité ou correction.
-2. Faites vos modifications et assurez-vous de tester votre code.
-3. Ouvrez une Pull Request pour fusionner votre branche dans la branche `main`.
-
 ## Licence
 
-Ce projet est sous licence MIT. Pour plus de détails, voir le fichier [LICENSE](LICENSE).
+Ce projet est sous licence MIT. Pour plus de détails, veuillez vous référer au fichier [LICENSE](LICENSE).
+
+## Contributeurs
+
+- Majdi
+- Avicenne
+- Ettaieb
+- Xin
+
+Nous sommes toujours ouverts aux contributions. N'hésitez pas à soumettre des pull requests ou à ouvrir des issues pour toute suggestion ou bug report.
+
+## Remerciements
+
+Nous tenons à remercier nos professeurs et mentors pour leurs précieux conseils et orientations tout au long de la réalisation de ce projet.
