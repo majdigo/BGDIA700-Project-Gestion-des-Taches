@@ -8,11 +8,12 @@ class Task:
     def __init__(self):
         self.nom = ''
         self.description = ''
+        Task.reset_dict()
 
     @classmethod
     def add_task(cls, task, description=None):
         if task in cls.task_dict:
-            raise ValueError('The task already exists')
+            raise ValueError('The task already exists')  
         task_info = {
             'description': description,
             'status': 'en cours',
@@ -40,3 +41,11 @@ class Task:
                         if info['status'] == 'en cours'
                         ]
         print(task_names)
+
+    @classmethod
+    def reset_dict(cls):
+        cls.task_dict.clear()
+
+    @classmethod
+    def clear_all(cls):
+        cls.reset_dict()   
