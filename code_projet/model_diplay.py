@@ -40,50 +40,30 @@ class TaskManagerApp:
 
         #create a task name entry
         self.add_task_name_entry = self.create_styled_entry(self.container, 1, 0, "TEntry")
-        # add_name_entry=ttk.Style()
-        # add_name_entry.configure("TEntry", borderwidth=2, relief="solid")
-        # self.add_task_name_entry = ttk.Entry(self.container,style="TEntry")
-        # self.add_task_name_entry.grid(row=1, column=0,padx=10, pady=20)
 
         #create a button of adding task
         self.add_task_button = self.create_button("Add Task", self.add_task, 1, 1)
-        # self.add_task_button.grid(row=1, column=1)
-
+ 
 
 
         #create a task name entry of deleting task
         self.Del_task_name_entry=self.create_styled_entry(self.container, 1, 2, "TEntry")
-        # Del_name_entry=ttk.Style()
-        # Del_name_entry.configure("TEntry", borderwidth=2, relief="solid")
-        # self.Del_task_name_entry = ttk.Entry(self.container,style="TEntry")
-        # self.Del_task_name_entry.grid(row=1, column=2,padx=10, pady=20)
 
         #create a button of deleting task
         self.add_task_button = self.create_button("Delete Task", self.delete_task, 1, 3)
-        # self.add_task_button.grid(row=1, column=3)
 
         #create a task name entry of completing task
         self.Complet_task_name_entry=self.create_styled_entry(self.container, 2, 0, "TEntry")
-        # Complet_name_entry=ttk.Style()
-        # Complet_name_entry.configure("TEntry", borderwidth=2, relief="solid")
-        # self.Complet_task_name_entry = ttk.Entry(self.container,style="TEntry")
-        # self.Complet_task_name_entry.grid(row=2, column=0,padx=10, pady=20)
 
         #create a button of completing task
         self.Complet_task_button = self.create_button("Complete Task", self.complet_task, 2, 1)
-        # self.Complet_task_button.grid(row=2, column=1)
 
        #create a button of clearing all tasks
         self.clear_all_button = self.create_button("Clear All", self.clear_all_tasks, 2, 3)
-        # self.clear_all_button.grid(row=2, column=3, columnspan=2, padx=10, pady=20)
 
-        #create a task description entry
-        # self.task_description_entry = ttk.Entry(self.container, style="TEntry")
-        # self.task_description_entry.grid(row=2, column=2, padx=10, pady=20)
 
         #create a button of adding description
         self.add_description_button = self.create_button("Add Description", self.add_description_to_task, 2, 2)
-        # self.add_description_button.grid(row=2, column=2)
 
         self.task_listbox = ttk.Treeview(self.container, columns=("name","description", "status", "date"), show="headings")
         self.task_listbox.grid(row=3, column=0, columnspan=4,sticky='n')
