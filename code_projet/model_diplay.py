@@ -1,7 +1,17 @@
+import logging
+import datetime
 from tkinter import ttk
 from tkinter import messagebox, simpledialog
 import tkinter as tk
 
+# Configurer le logger
+logging.basicConfig(filename='task_manager.log',
+                    level=logging.INFO,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.INFO)
+console_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+logging.getLogger('').addHandler(console_handler)
 
 class TaskManagerApp:
     def __init__(self, root, task_instance):
@@ -105,8 +115,14 @@ class TaskManagerApp:
                 self.task_list.add_task(task_name, task_description)
                 self.update_task_listbox()
                 self.add_task_name_entry.delete(0, "end")
+                # Ajouter la journalisation
+                logging.info(f"Added task: {task_name}, Description: {task_description}")
+
         else:
             messagebox.showinfo("ERROR", "Task name cannot be empty.")
+            # Ajouter la journalisation
+            logging.warning("Tried to add a task with an empty name.")
+
 
     def delete_task(self):
         task_name = self.Del_task_name_entry.get()
@@ -114,6 +130,13 @@ class TaskManagerApp:
             self.task_list.delete_task(task_name)
             self.update_task_listbox()
             self.Del_task_name_entry.delete(0, "end")
+            # Ajouter la journalisation
+            logging.info(f"Deleted task: {task_name}")
+        else:
+            messagebox.showinfo("ERROR", "Task name cannot be empty.")
+            # Ajouter la journalisation
+            logging.warning("Tried to delete a task with an empty name.")
+
 
     def complet_task(self):
         task_name = self.Complet_task_name_entry.get()
@@ -123,10 +146,19 @@ class TaskManagerApp:
                 self.task_list.task_dict[task_name]['status'] = 'terminée'
                 self.update_task_listbox()
                 self.Complet_task_name_entry.delete(0, "end")
+                # Ajouter la journalisation
+                logging.info(f"Completed task: {task_name}")
+
             else:
                 # task does not exist, show message to user
                 messagebox.showinfo("ERROR", "Task not found in the task list.")
                 self.Complet_task_name_entry.delete(0, "end")
+                # Ajouter la journalisation
+                logging.warning(f"Tried to complete a non-existent task: {task_name}")
+        else:
+            messagebox.showinfo("ERROR", "Task name cannot be empty.")
+            # Ajouter la journalisation
+            logging.warning("Tried to complete a task with an empty name.")
 
     def clear_all_tasks(self):
         # show confirmation dialog to user
@@ -135,6 +167,12 @@ class TaskManagerApp:
             # if confirmed, clear all tasks
             self.task_list.clear_all()
             self.update_task_listbox()
+            # Ajouter la journalisation
+            logging.info("Cleared all tasks.")
+        else:
+            # Ajouter la journalisation
+            logging.info("User canceled task clearing operation.")
+
 
     def add_description_to_task(self):
         tasks_without_description = [task for task in self.task_list.task_dict if not self.task_list.task_dict[task]['description']]
@@ -154,8 +192,14 @@ class TaskManagerApp:
                 if task_description:
                     self.task_list.task_dict[selected_task]['description'] = task_description
                     self.update_task_listbox()
+                    # Ajouter la journalisation
+                    logging.info(f"Added description to task: {selected_task}")
+
         else:
             messagebox.showinfo("INFO", "All tasks already have descriptions.")
+            # Ajouter la journalisation
+            logging.info("All tasks already have descriptions.")
+
 
     def update_task_listbox(self):
         # delete all items from the treeview
