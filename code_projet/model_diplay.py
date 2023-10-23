@@ -26,61 +26,64 @@ class TaskManagerApp:
         self.task_list = task_instance
         self.root.configure(bg="#6593c0")
 
-        # 创建一个布局容器
+        #create a container
         self.container = ttk.Frame(root)
         self.container.grid(row=0, column=0, padx=50, pady=50)
 
-        # 创建一个样式对象
+        #create a style object
         self.style = ttk.Style()
         self.style.configure("Title.TLabel", background="#FAEBD7", foreground="#8B4513", font=("Helvetica", 20))
 
-        # 创建标题标签
+        #create a label
         self.title_label = ttk.Label(self.container, text="To-Do List", style="Title.TLabel")
         self.title_label.grid(row=0, column=0, columnspan=4,padx=50, pady=50,sticky='n')
 
-        # 创建任务名称输入框
-        add_name_entry=ttk.Style()
-        add_name_entry.configure("TEntry", borderwidth=2, relief="solid")
-        self.add_task_name_entry = ttk.Entry(self.container,style="TEntry")
-        self.add_task_name_entry.grid(row=1, column=0,padx=10, pady=20)
+        #create a task name entry
+        self.add_task_name_entry = self.create_styled_entry(self.container, 1, 0, "TEntry")
+        # add_name_entry=ttk.Style()
+        # add_name_entry.configure("TEntry", borderwidth=2, relief="solid")
+        # self.add_task_name_entry = ttk.Entry(self.container,style="TEntry")
+        # self.add_task_name_entry.grid(row=1, column=0,padx=10, pady=20)
 
-        # 创建“添加任务”按钮
-        self.add_task_button = ttk.Button(self.container, text="Add Task", command=self.add_task)
-        self.add_task_button.grid(row=1, column=1)
+        #create a button of adding task
+        self.add_task_button = self.create_button("Add Task", self.add_task, 1, 1)
+        # self.add_task_button.grid(row=1, column=1)
 
 
 
-        # 创建删除任务名称输入框
-        Del_name_entry=ttk.Style()
-        Del_name_entry.configure("TEntry", borderwidth=2, relief="solid")
-        self.Del_task_name_entry = ttk.Entry(self.container,style="TEntry")
-        self.Del_task_name_entry.grid(row=1, column=2,padx=10, pady=20)
+        #create a task name entry of deleting task
+        self.Del_task_name_entry=self.create_styled_entry(self.container, 1, 2, "TEntry")
+        # Del_name_entry=ttk.Style()
+        # Del_name_entry.configure("TEntry", borderwidth=2, relief="solid")
+        # self.Del_task_name_entry = ttk.Entry(self.container,style="TEntry")
+        # self.Del_task_name_entry.grid(row=1, column=2,padx=10, pady=20)
 
-        # 创建“删除”按钮
-        self.add_task_button = ttk.Button(self.container, text="Delete Task", command=self.delete_task)
-        self.add_task_button.grid(row=1, column=3)
+        #create a button of deleting task
+        self.add_task_button = self.create_button("Delete Task", self.delete_task, 1, 3)
+        # self.add_task_button.grid(row=1, column=3)
 
-        # 创建完成任务名称输入框
-        Complet_name_entry=ttk.Style()
-        Complet_name_entry.configure("TEntry", borderwidth=2, relief="solid")
-        self.Complet_task_name_entry = ttk.Entry(self.container,style="TEntry")
-        self.Complet_task_name_entry.grid(row=2, column=0,padx=10, pady=20)
+        #create a task name entry of completing task
+        self.Complet_task_name_entry=self.create_styled_entry(self.container, 2, 0, "TEntry")
+        # Complet_name_entry=ttk.Style()
+        # Complet_name_entry.configure("TEntry", borderwidth=2, relief="solid")
+        # self.Complet_task_name_entry = ttk.Entry(self.container,style="TEntry")
+        # self.Complet_task_name_entry.grid(row=2, column=0,padx=10, pady=20)
 
-        # 创建“完成”按钮
-        self.Complet_task_button = ttk.Button(self.container, text="Complete Task", command=self.complet_task)
-        self.Complet_task_button.grid(row=2, column=1)
+        #create a button of completing task
+        self.Complet_task_button = self.create_button("Complete Task", self.complet_task, 2, 1)
+        # self.Complet_task_button.grid(row=2, column=1)
 
-       # 创建一件删除所有任务的按钮
-        self.clear_all_button = ttk.Button(self.container, text="Clear All Tasks", command=self.clear_all_tasks)
-        self.clear_all_button.grid(row=2, column=3, columnspan=2, padx=10, pady=20)
+       #create a button of clearing all tasks
+        self.clear_all_button = self.create_button("Clear All", self.clear_all_tasks, 2, 3)
+        # self.clear_all_button.grid(row=2, column=3, columnspan=2, padx=10, pady=20)
 
-        # 创建任务描述输入框
+        #create a task description entry
         # self.task_description_entry = ttk.Entry(self.container, style="TEntry")
         # self.task_description_entry.grid(row=2, column=2, padx=10, pady=20)
 
-        # 创建“添加描述”按钮
-        self.add_description_button = ttk.Button(self.container, text="Add Description", command=self.add_description_to_task)
-        self.add_description_button.grid(row=2, column=2)
+        #create a button of adding description
+        self.add_description_button = self.create_button("Add Description", self.add_description_to_task, 2, 2)
+        # self.add_description_button.grid(row=2, column=2)
 
         self.task_listbox = ttk.Treeview(self.container, columns=("name","description", "status", "date"), show="headings")
         self.task_listbox.grid(row=3, column=0, columnspan=4,sticky='n')
@@ -93,12 +96,19 @@ class TaskManagerApp:
         self.task_listbox.column("status", anchor="center")
         self.task_listbox.column("date", anchor="center")
        
+    def create_button(self, text, command, row, column):
+        button = ttk.Button(self.container, text=text, command=command)
+        button.grid(row=row, column=column)
+        return button
 
-
+    def create_styled_entry(self, container, row, column, style_name):
+        entry = ttk.Entry(container, style=style_name)
+        entry.grid(row=row, column=column, padx=10, pady=20)
+        return entry
 
     def add_task(self):
         input_text = self.add_task_name_entry.get()
-        task_parts = input_text.split(',', 1)  # 使用逗号进行第一次分割，最多分割一次
+        task_parts = input_text.split(',', 1)
         task_name = task_parts[0].strip()
 
         if task_name:
@@ -124,20 +134,20 @@ class TaskManagerApp:
         task_name = self.Complet_task_name_entry.get()
         if task_name:
             if task_name in self.task_list.task_dict:
-                # 更改任务状态为已完成
+                # change the status of the task to completed
                 self.task_list.task_dict[task_name]['status'] = 'terminée'
                 self.update_task_listbox()
                 self.Complet_task_name_entry.delete(0, "end")
             else:
-                # 任务不存在，向用户显示消息
+                # task does not exist, show message to user
                 messagebox.showinfo("ERROR", "Task not found in the task list.")
                 self.Complet_task_name_entry.delete(0, "end")
 
     def clear_all_tasks(self):
-        # 弹出确认框，询问用户是否确定要清除所有任务
+        # show confirmation dialog to user
         confirmed = messagebox.askyesno("Confirmation", "Are you sure you want to clear all tasks?")
         if confirmed:
-            # 用户确认后，清除所有任务
+            # if confirmed, clear all tasks
             self.task_list.clear_all()
             self.update_task_listbox()
      
@@ -145,13 +155,13 @@ class TaskManagerApp:
         tasks_without_description = [task for task in self.task_list.task_dict if not self.task_list.task_dict[task]['description']]
         
         if tasks_without_description:
-            # 创建任务选择对话框
+            #create a task selection dialog
             task_selection_dialog = TaskSelectionDialog(self.root, tasks_without_description)
             self.root.wait_window(task_selection_dialog.top)
 
             if task_selection_dialog.selected_task:
                 selected_task = task_selection_dialog.selected_task
-                # 弹出对话框获取任务描述
+                #show dialog to get task description
                 task_description = simpledialog.askstring("Add Description", f"Enter a description for the task '{selected_task}':", parent=self.root)
                 if task_description:
                     self.task_list.task_dict[selected_task]['description'] = task_description
@@ -160,7 +170,7 @@ class TaskManagerApp:
             messagebox.showinfo("INFO", "All tasks already have descriptions.")
  
     def update_task_listbox(self):
-        # 清空现有的项目
+        # delete all items from the treeview
         for item in self.task_listbox.get_children():
             self.task_listbox.delete(item)
 
