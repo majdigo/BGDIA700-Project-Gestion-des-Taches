@@ -1,81 +1,86 @@
-import sys
-import os
-
-# Obtenir le répertoire dans lequel se trouve le fichier courant
-current_directory = os.path.dirname(os.path.realpath(__file__ ))
-
-# Obtenir le répertoire racine du projet
-project_root = os.path.abspath(os.path.join(current_directory, ".."))
-
-# Ajouter le répertoire racine du projet au chemin de recherche des modules
-sys.path.append(project_root)
-
-from code_projet.version_2 import Task
-
-
-import tkinter as tk
 from tkinter import ttk
-from tkinter import messagebox, simpledialog            
-
+from tkinter import messagebox, simpledialog
+import tkinter as tk
 
 
 class TaskManagerApp:
-    def __init__(self, root,task_instance):
+    def __init__(self, root, task_instance):
         self.root = root
         self.root.title("TO-DO List")
         self.task_list = task_instance
         self.root.configure(bg="#6593c0")
 
-        #create a container
+        # create a container
         self.container = ttk.Frame(root)
         self.container.grid(row=0, column=0, padx=50, pady=50)
 
-        #create a style object
+        # create a style object
         self.style = ttk.Style()
-        self.style.configure("Title.TLabel", background="#FAEBD7", foreground="#8B4513", font=("Helvetica", 20))
+        self.style.configure("Title.TLabel", background="#FAEBD7",
+                             foreground="#8B4513", font=("Helvetica", 20))
 
-        #create a label
-        self.title_label = ttk.Label(self.container, text="To-Do List", style="Title.TLabel")
-        self.title_label.grid(row=0, column=0, columnspan=4,padx=50, pady=50,sticky='n')
+        # create a label
+        self.title_label = ttk.Label(self.container,
+                                     text="To-Do List",
+                                     style="Title.TLabel")
 
-        #create a task name entry
+        self.title_label.grid(row=0, column=0, columnspan=4,
+                              padx=50, pady=50, sticky='n')
+
+        # create a task name entry
         self.add_task_name_entry = self.create_styled_entry(self.container, 1, 0, "TEntry")
 
-        #create a button of adding task
-        self.add_task_button = self.create_button("Add Task", self.add_task, 1, 1)
- 
+        # create a button of adding task
+        self.add_task_button = self.create_button("Add Task",
+                                                  self.add_task, 1, 1)
 
+        # create a task name entry of deleting task
+        self.Del_task_name_entry = self.create_styled_entry(self.container,
+                                                            1, 2, "TEntry")
 
-        #create a task name entry of deleting task
-        self.Del_task_name_entry=self.create_styled_entry(self.container, 1, 2, "TEntry")
+        # create a button of deleting task
+        self.add_task_button = self.create_button("Delete Task",
+                                                  self.delete_task, 1, 3)
 
-        #create a button of deleting task
-        self.add_task_button = self.create_button("Delete Task", self.delete_task, 1, 3)
+        # create a entry of completing task
+        self.Complet_task_name_entry = self.create_styled_entry(self.container,
+                                                                2, 0, "TEntry")
 
-        #create a task name entry of completing task
-        self.Complet_task_name_entry=self.create_styled_entry(self.container, 2, 0, "TEntry")
+        # create a button of completing task
+        self.Complet_task_button = self.create_button("Complete Task",
+                                                      self.complet_task, 2, 1)
 
-        #create a button of completing task
-        self.Complet_task_button = self.create_button("Complete Task", self.complet_task, 2, 1)
+        # create a button of clearing all tasks
+        self.clear_all_button = self.create_button("Clear All",
+                                                   self.clear_all_tasks, 2, 3)
 
-       #create a button of clearing all tasks
-        self.clear_all_button = self.create_button("Clear All", self.clear_all_tasks, 2, 3)
+        # create a button of adding description
+        self.add_description_button = self.create_button("Add Description",
+                                                         self.add_description_to_task, 2, 2)
 
+        self.task_listbox = ttk.Treeview(self.container,
+                                         columns=("name", "description", "status", "date"),
+                                         show="headings")
 
-        #create a button of adding description
-        self.add_description_button = self.create_button("Add Description", self.add_description_to_task, 2, 2)
+        self.task_listbox.grid(row=3, column=0, columnspan=4, sticky='n')
+        self.task_listbox.heading("name", text="name", anchor="center")
 
-        self.task_listbox = ttk.Treeview(self.container, columns=("name","description", "status", "date"), show="headings")
-        self.task_listbox.grid(row=3, column=0, columnspan=4,sticky='n')
-        self.task_listbox.heading("name", text="name",anchor="center")
-        self.task_listbox.heading("description", text="Description",anchor="center")
-        self.task_listbox.heading("status", text="Status",anchor="center")
-        self.task_listbox.heading("date", text="Date",anchor="center")
+        self.task_listbox.heading("description",
+                                  text="Description",
+                                  anchor="center")
+
+        self.task_listbox.heading("status",
+                                  text="Status",
+                                  anchor="center")
+
+        self.task_listbox.heading("date",
+                                  text="Date",
+                                  anchor="center")
 
         self.task_listbox.column("name", anchor="center")
         self.task_listbox.column("status", anchor="center")
         self.task_listbox.column("date", anchor="center")
-       
+
     def create_button(self, text, command, row, column):
         button = ttk.Button(self.container, text=text, command=command)
         button.grid(row=row, column=column)
@@ -102,7 +107,7 @@ class TaskManagerApp:
                 self.add_task_name_entry.delete(0, "end")
         else:
             messagebox.showinfo("ERROR", "Task name cannot be empty.")
-  
+
     def delete_task(self):
         task_name = self.Del_task_name_entry.get()
         if task_name:
@@ -130,32 +135,39 @@ class TaskManagerApp:
             # if confirmed, clear all tasks
             self.task_list.clear_all()
             self.update_task_listbox()
-     
+
     def add_description_to_task(self):
         tasks_without_description = [task for task in self.task_list.task_dict if not self.task_list.task_dict[task]['description']]
-        
+
         if tasks_without_description:
-            #create a task selection dialog
-            task_selection_dialog = TaskSelectionDialog(self.root, tasks_without_description)
+            # create a task selection dialog
+            task_selection_dialog = TaskSelectionDialog(self.root,
+                                                        tasks_without_description)
             self.root.wait_window(task_selection_dialog.top)
 
             if task_selection_dialog.selected_task:
                 selected_task = task_selection_dialog.selected_task
-                #show dialog to get task description
-                task_description = simpledialog.askstring("Add Description", f"Enter a description for the task '{selected_task}':", parent=self.root)
+                # show dialog to get task description
+                task_description = simpledialog.askstring("Add Description",
+                                                          f"Enter a description for the task '{selected_task}':",
+                                                          parent=self.root)
                 if task_description:
                     self.task_list.task_dict[selected_task]['description'] = task_description
                     self.update_task_listbox()
         else:
             messagebox.showinfo("INFO", "All tasks already have descriptions.")
- 
+
     def update_task_listbox(self):
         # delete all items from the treeview
         for item in self.task_listbox.get_children():
             self.task_listbox.delete(item)
 
         for task, info in self.task_list.task_dict.items():
-            self.task_listbox.insert("", "end", values=(task, info['description'], info['status'], info['date']))
+            self.task_listbox.insert("", "end",
+                                     values=(task,
+                                             info['description'],
+                                             info['status'],
+                                             info['date']))
 
 
 class TaskSelectionDialog:
@@ -163,12 +175,15 @@ class TaskSelectionDialog:
         self.top = tk.Toplevel(parent)
         self.selected_task = None
 
-        self.label = ttk.Label(self.top, text="Select a task to add a description:")
+        self.label = ttk.Label(self.top,
+                               text="Select a task to add a description:")
         self.label.pack(pady=5)
 
         self.task_var = tk.StringVar()
         self.task_var.set(tasks[0])
-        self.task_menu = ttk.Combobox(self.top, textvariable=self.task_var, values=tasks)
+        self.task_menu = ttk.Combobox(self.top,
+                                      textvariable=self.task_var,
+                                      values=tasks)
         self.task_menu.pack(pady=5)
 
         self.ok_button = ttk.Button(self.top, text="OK", command=self.ok)
@@ -182,9 +197,5 @@ class TaskSelectionDialog:
         self.top.destroy()
 
 
-
 if __name__ == "__main__":
-    root = tk.Tk()
-    task_instance=Task()
-    app = TaskManagerApp(root,task_instance)
-    root.mainloop()
+    pass
