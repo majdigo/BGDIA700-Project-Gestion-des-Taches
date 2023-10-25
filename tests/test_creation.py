@@ -13,7 +13,6 @@ sys.path.append(project_root)
 import io
 import pytest
 import random
-import datetime as dt
 from code_projet.version_2 import Task
 
 test=Task()
@@ -40,15 +39,6 @@ def test_delete_task():
     test.add_task('Task4', 'Description for Task4')
     test.delete_task('Task4')
     assert 'Task4' not in test.task_dict
-
-def test_reset_task():
-# Effacer tous les tâches dans dictionnaire
-    test.reset_dict()
-    test_init = len(test.task_dict)
-    test.add_task('Task4', 'Description for Task4')
-    test.reset_dict()
-    test_final = len(test.task_dict)    
-    assert test_init == test_final
     
 def test_reset_task():
 # Effacer tous les tâches dans dictionnaire
