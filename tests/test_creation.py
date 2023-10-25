@@ -10,33 +10,72 @@ project_root = os.path.abspath(os.path.join(current_directory, ".."))
 
 # Ajouter le répertoire racine du projet au chemin de recherche des modules
 sys.path.append(project_root)
+import io
 import pytest
+import random
+import datetime as dt
 from code_projet.version_2 import Task
-from code_projet.model_diplay import TaskManagerApp
-import tkinter as tk
-import time
 
-# test=Task()
-# root=tk.Tk()
-# app = TaskManagerApp(root,test)
-# root.mainloop()
+test=Task()
+def test_add_task():
+    # Effacer tous les tâches dans dictionnaire
+    test.reset_dict()  
+    test.add_task('Task1', 'Description for Task1')
+    assert 'Task1' in test.task_dict
+    task_info = test.task_dict['Task1']
+    assert task_info['description'] == 'Description for Task1'
+    assert task_info['status'] == 'en cours'
 
-def test_task_integration():
-    # 创建 Task 实例
-    task = Task()
+def test_add_task_with_date():
+    # Effacer tous les tâches dans dictionnaire
+    test.reset_dict()  
+    date = dt.datetime.now().strftime("%Y-%m-%d")
+    test.add_task('Task2', 'Description for Task2')
+    assert 'Task2' in test.task_dict
+    task_info = test.task_dict['Task2']
+    assert task_info['description'] == 'Description for Task2'
+    assert task_info['status'] == 'en cours'
+    assert task_info['date'] == date
 
-    # 在 TaskManagerApp 中添加任务
-    app = TaskManagerApp(tk.Tk(), task)
-    app.add_task('task1')
+def test_complete_task():
+# Effacer tous les tâches dans dictionnaire
+    test.reset_dict()  
+    test.add_task('Task3', 'Description for Task3')
+    test.complete_task('Task3')
+    assert Task.task_dict['Task3']['status'] == 'terminée'
 
-    # 检查任务是否成功添加
-    assert 'task1' in task.task_dict
-    # assert task.task_dict['task1']['description'] == 'Description for task1'
+def test_delete_task():
+# Effacer tous les tâches dans dictionnaire
+    test.reset_dict()  
+    test.add_task('Task4', 'Description for Task4')
+    test.delete_task('Task4')
+    assert 'Task4' not in test.task_dict
 
-    # 还可以继续编写其他测试用例来测试不同的功能交互
+def test_display():
+# Effacer tous les tâches dans dictionnaire
+    test.reset_dict()
+    nb_task = random.randint(1, 10)
+    for i in range(nb_task):
+        test.add_task('Task'+str(i+1), 'Description for Task'+str(i+1))
+    nb_complete_task = random.randint(1, nb_task)
+    for i in range(nb_complete_task):
+        test.complete_task('Task'+str(i+1))
+    test_dict = [item for item in test.task_dict.keys() if test.task_dict[item]['status'] == 'en cours']    
+# Appelez la méthode display() et capturez sa sortie
+    io_obj = io.StringIO()
+    sys.stdout = io_obj
+    
+    test.display()
+    
+    sys.stdout = sys.__stdout__
+    captured = io_obj.getvalue()
+    captured = eval(captured)
+    captured = set(captured)
+    
+    assert set(test_dict).issubset(captured)
+
+
 
 if __name__ == "__main__":
     pytest.main()
 
-
-# print(test.task_dict)
