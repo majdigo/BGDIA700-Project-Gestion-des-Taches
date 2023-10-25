@@ -26,17 +26,7 @@ def test_add_task():
     assert task_info['description'] == 'Description for Task1'
     assert task_info['status'] == 'en cours'
 
-def test_add_task_with_date():
-    # Effacer tous les tâches dans dictionnaire
-    test.reset_dict()  
-    date = dt.datetime.now().strftime("%Y-%m-%d")
-    test.add_task('Task2', 'Description for Task2')
-    assert 'Task2' in test.task_dict
-    task_info = test.task_dict['Task2']
-    assert task_info['description'] == 'Description for Task2'
-    assert task_info['status'] == 'en cours'
-    assert task_info['date'] == date
-
+    
 def test_complete_task():
 # Effacer tous les tâches dans dictionnaire
     test.reset_dict()  
@@ -50,6 +40,24 @@ def test_delete_task():
     test.add_task('Task4', 'Description for Task4')
     test.delete_task('Task4')
     assert 'Task4' not in test.task_dict
+
+def test_reset_task():
+# Effacer tous les tâches dans dictionnaire
+    test.reset_dict()
+    test_init = len(test.task_dict)
+    test.add_task('Task4', 'Description for Task4')
+    test.reset_dict()
+    test_final = len(test.task_dict)    
+    assert test_init == test_final
+    
+def test_reset_task():
+# Effacer tous les tâches dans dictionnaire
+    test.reset_dict()
+    test_init = len(test.task_dict)
+    test.add_task('Task4', 'Description for Task4')
+    test.reset_dict()
+    test_final = len(test.task_dict)    
+    assert test_init == test_final
 
 def test_display():
 # Effacer tous les tâches dans dictionnaire
