@@ -75,5 +75,6 @@ def test_display():
 
 
 if __name__ == "__main__":
+    # do the tests
     pytest.main()
 
