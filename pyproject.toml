@@ -6,7 +6,7 @@ authors = ["apesseu <pesseupesseu@telecom-paris.fr>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.11.4"
 datetime = "^5.2"
 logging = "^0.4.9.6"
 
