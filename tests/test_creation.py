@@ -13,7 +13,7 @@ sys.path.append(project_root)
 import io
 import pytest
 import random
-from code_projet.version_2 import Task
+from code_projet.model_task import Task
 
 test=Task()
 def test_add_task():
