@@ -91,15 +91,3 @@ if __name__ == "__main__":
     console_handler.setFormatter(logging.
                                  Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
     logging.getLogger('').addHandler(console_handler)
-
-    task = Task()
-    task.add_task('task1')
-    task.add_task('task2', 'description2')
-    task.add_task('task3', 'description3')
-    task.delete_task('task2')
-    task.add_task('task4', 'description4')
-    task.complete_task('task1', 'task3')
-    task.display()
-    test=Task()
-    print(test.task_counter)
-    # print(task.task_dict)
