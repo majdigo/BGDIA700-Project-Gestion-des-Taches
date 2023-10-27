@@ -8,8 +8,8 @@ logging.basicConfig(filename='myapp.log', level=logging.INFO)
 
 class Task:
     # Create a dictionary to store tasks
-    task_dict = defaultdict(lambda: {'description': '', 'status': 'en cours'})
-
+    task_dict = defaultdict(lambda: {'ID': None, 'description': '', 'status': 'en cours'})
+    task_counter = 1
     def __init__(self):
         self.nom = ''
         self.description = ''
@@ -30,13 +30,15 @@ class Task:
         if task in cls.task_dict:
             raise ValueError('The task already exists')
         task_info = {
+            'ID': cls.task_counter,
             'description': description,
             'status': 'en cours',
             'date': dt.datetime.now().strftime("%Y-%m-%d")
         }
         cls.task_dict[task].update(task_info)
+        cls.task_counter += 1
         # Ajouter la journalisation
-        logging.info(f"Added task: {task}, Description: {description}")
+        logging.info(f"Added task: {task}, ID: {task_info['ID']}, Description: {description}")
 
     @classmethod
     def complete_task(cls, *args):
@@ -91,4 +93,10 @@ if __name__ == "__main__":
 
     task = Task()
     task.add_task('task1')
-    print(task.task_dict)
+    task.add_task('task2', 'description2')
+    task.add_task('task3', 'description3')
+    task.delete_task('task2')
+    task.add_task('task4', 'description4')
+    task.complete_task('task1', 'task3')
+    task.display()
+    # print(task.task_dict)
