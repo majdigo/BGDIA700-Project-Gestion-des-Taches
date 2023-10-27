@@ -72,6 +72,7 @@ class Task:
     def reset_dict(cls):
         # reset the task dictionary
         cls.task_dict.clear()
+        cls.task_counter = 1
 
     @classmethod
     def clear_all(cls):
@@ -99,4 +100,6 @@ if __name__ == "__main__":
     task.add_task('task4', 'description4')
     task.complete_task('task1', 'task3')
     task.display()
+    test=Task()
+    print(test.task_counter)
     # print(task.task_dict)
