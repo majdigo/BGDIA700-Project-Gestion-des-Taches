@@ -1,5 +1,4 @@
 import logging
-import datetime
 from tkinter import ttk
 from tkinter import messagebox, simpledialog
 import tkinter as tk
@@ -69,11 +68,13 @@ class TaskManagerApp:
                                                          self.add_description_to_task, 2, 2)
 
         self.task_listbox = ttk.Treeview(self.container,
-                                         columns=("name", "description", "status", "date"),
+                                         columns=("name","ID", "description", "status", "date"),
                                          show="headings")
 
-        self.task_listbox.grid(row=3, column=0, columnspan=4, sticky='n')
+        self.task_listbox.grid(row=3, column=0, columnspan=5, sticky='n')
         self.task_listbox.heading("name", text="name", anchor="center")
+        
+        self.task_listbox.heading("ID", text="ID", anchor="center")
 
         self.task_listbox.heading("description",
                                   text="Description",
@@ -88,6 +89,8 @@ class TaskManagerApp:
                                   anchor="center")
 
         self.task_listbox.column("name", anchor="center")
+        self.task_listbox.column("ID", anchor="center")
+
         self.task_listbox.column("status", anchor="center")
         self.task_listbox.column("date", anchor="center")
 
@@ -116,7 +119,8 @@ class TaskManagerApp:
                 self.update_task_listbox()
                 self.add_task_name_entry.delete(0, "end")
                 # Ajouter la journalisation
-                logging.info(f"Added task: {task_name}, Description: {task_description}")
+                info = self.task_list.task_dict[task_name]
+                logging.info(f"Added task: {task_name}, Description: {task_description},Status: {info['status']}, Date: {info['date']}")
 
         else:
             messagebox.showinfo("ERROR", "Task name cannot be empty.")
@@ -209,6 +213,7 @@ class TaskManagerApp:
         for task, info in self.task_list.task_dict.items():
             self.task_listbox.insert("", "end",
                                      values=(task,
+                                             info['ID'],
                                              info['description'],
                                              info['status'],
                                              info['date']))
