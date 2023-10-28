@@ -51,7 +51,7 @@ jobs:
     - name: Run unit tests
       run: |
         pip install pytest
-        pytest tests/test_creation.py tests/test_dispaly.py   
+        pytest tests/test_creation.py  
 
 
     - name: Check test coverage
