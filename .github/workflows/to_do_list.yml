@@ -1,0 +1,61 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.11.4
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.11.4"
+
+    - name: Update Poetry to 1.6.1
+      run: |
+            curl -sSL https://install.python-poetry.org | python3 -
+            export PATH="$HOME/.poetry/bin:$PATH"
+            poetry self update 1.6.1
+      if: runner.os == 'Linux' || runner.os == 'Windows'
+    
+    - name: Install dependencies
+      run: |
+            poetry install
+      if: runner.os == 'Linux' || runner.os == 'Windows'
+    
+    - name: Check PEP8 compliance
+      run: |
+            poetry run flake8 code_projet/model_task.py code_projet/model_display.py
+      if: runner.os == 'Linux' || runner.os == 'Windows'
+
+    - name: Verify docstrings
+      run: |
+        pip install pydocstyle
+        pydocstyle code_projet/model_task.py code_projet/model_display.py
+      if: runner.os == 'Linux' || runner.os == 'Windows'
+
+    - name: Run unit tests
+      run: |
+        pip install pytest
+        pytest tests/test_creation.py tests/test_dispaly.py   
+
+
+    - name: Check test coverage
+      run: |
+        pip install coverage
+        coverage run -m pytest tests/test_creation.py
+        coverage report --fail-under=90
+    
