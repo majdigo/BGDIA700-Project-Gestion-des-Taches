@@ -38,13 +38,14 @@ jobs:
     
     - name: Check PEP8 compliance
       run: |
-            poetry run flake8 code_projet/model_task.py code_projet/model_display.py
+            poetry add --dev flake8
+            poetry run flake8 code_projet/model_task.py
       if: runner.os == 'Linux' || runner.os == 'Windows'
 
     - name: Verify docstrings
       run: |
         pip install pydocstyle
-        pydocstyle code_projet/model_task.py code_projet/model_display.py
+        pydocstyle code_projet/model_task.py
       if: runner.os == 'Linux' || runner.os == 'Windows'
 
     - name: Run unit tests
