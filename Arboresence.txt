@@ -8,21 +8,19 @@ BGDIA700-Project-Gestion-des-Taches/
 │
 ├── code_projet/ (ou tasklib/ ou src ??)
 │   ├── __init__.py
-│   ├── main.py
-│   ├── models.py
-│   ├── exceptions.py
-│   └── cli.py
+│   ├── model_display.py
+│   ├── model_task.py
 │
 ├── tests/
 │   ├── __init__.py
-│   ├── test_models.py
-│   ├── ... (selon les tests qu'on fera)
+│   ├── test_cration.py
+│   ├── test_display
 │
 ├── docs/
-│   ├── ... (fichiers de configuration et sources pour Sphinx ou autre outil de documentation, on decidera plus tard)
+│   ├── Généré par Sphinx
 │
 ├── logs/
-│   ├── ... (fichiers de logs générés apres tests et utilisation)
+│   ├── myapp.log
 │
 └── .github/
     ├── workflows/
