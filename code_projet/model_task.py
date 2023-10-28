@@ -1,3 +1,8 @@
+"""
+This is a sample module for the code_projet package.
+
+This module contains various functions and classes related to tasks.
+"""
 import datetime as dt
 from collections import defaultdict
 import logging
@@ -7,6 +12,14 @@ logging.basicConfig(filename='myapp.log', level=logging.INFO)
 
 
 class Task:
+    """
+    This class represents a task manager.
+
+    Attributes:
+        task_dict (defaultdict): A dictionary to store tasks.
+        task_counter (int): A counter for generating task IDs.
+    """
+
     # Create a dictionary to store tasks
     task_dict = defaultdict(lambda: {'ID': None,
                                      'description': '',
@@ -14,6 +27,7 @@ class Task:
     task_counter = 1
 
     def __init__(self):
+        """Initialize a task object."""
         self.nom = ''
         self.description = ''
         # initialize the task dictionary by each call of the class
@@ -21,14 +35,15 @@ class Task:
 
     @classmethod
     def add_task(cls, task, description=None):
-        """_summary_
+        """
+        Add a new task to the task manager.
 
         Args:
-            task (_type_): _description_
-            description (_type_, optional): _description_. Defaults to None.
+            task (str): The name of the task.
+            description (str, optional): The description of the task.
 
         Raises:
-            ValueError: _description_
+            ValueError: If the task already exists.
         """
         if task in cls.task_dict:
             raise ValueError('The task already exists')
@@ -49,6 +64,12 @@ class Task:
 
     @classmethod
     def complete_task(cls, *args):
+        """
+        Mark one or more tasks as completed.
+
+        Args:
+            *args (str): The names of the tasks to mark as completed.
+        """
         # complete one or more tasks
         for arg in args:
             task_info = cls.task_dict.get(arg)
@@ -59,6 +80,12 @@ class Task:
 
     @classmethod
     def delete_task(cls, *noms):
+        """
+        Delete one or more tasks.
+
+        Args:
+            *noms (str): The names of the tasks to delete.
+        """
         # delete one or more tasks
         for nom in noms:
             cls.task_dict.pop(nom, None)
@@ -67,6 +94,7 @@ class Task:
 
     @classmethod
     def display(cls):
+        """Display all tasks that are not completed."""
         # display all tasks which are not completed
         task_names = [
                         task
@@ -77,12 +105,14 @@ class Task:
 
     @classmethod
     def reset_dict(cls):
+        """Reset the task dictionary."""
         # reset the task dictionary
         cls.task_dict.clear()
         cls.task_counter = 1
 
     @classmethod
     def clear_all(cls):
+        """Clear all tasks."""
         # clear all tasks
         cls.reset_dict()
 
