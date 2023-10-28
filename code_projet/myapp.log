@@ -1,0 +1,31 @@
+INFO:root:Added task: task1, Description: None
+INFO:root:Added task: ded, Description: 
+INFO:root:Deleted task(s): ded
+INFO:root:Added task: ded, Description: dede
+INFO:root:Added task: ded, Description: 
+INFO:root:Added task: test, Description: 
+INFO:root:Added task: test, Description: 
+INFO:root:Completed task: test
+INFO:root:Deleted task(s): test
+INFO:root:Deleted task: test
+INFO:root:Added task: test, Description: 
+INFO:root:Added task: test, Description: 
+INFO:root:Cleared all tasks.
+INFO:root:Added task: task1, ID: 1, Description: None
+INFO:root:Added task: task2, ID: 2, Description: description2
+INFO:root:Added task: task3, ID: 3, Description: description3
+INFO:root:Deleted task(s): task2
+INFO:root:Added task: task4, ID: 4, Description: description4
+INFO:root:Completed task(s): task1, task3
+INFO:root:Added task: task1, ID: 1, Description: None
+INFO:root:Added task: task2, ID: 2, Description: description2
+INFO:root:Added task: task3, ID: 3, Description: description3
+INFO:root:Deleted task(s): task2
+INFO:root:Added task: task4, ID: 4, Description: description4
+INFO:root:Completed task(s): task1, task3
+INFO:root:Added task: task1, ID: 1, Description: None
+INFO:root:Added task: task2, ID: 2, Description: description2
+INFO:root:Added task: task3, ID: 3, Description: description3
+INFO:root:Deleted task(s): task2
+INFO:root:Added task: task4, ID: 4, Description: description4
+INFO:root:Completed task(s): task1, task3
