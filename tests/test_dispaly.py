@@ -1,10 +1,8 @@
 
-import sys
 import os
+import sys
 import pytest
 import tkinter as tk
-from code_projet.model_task import Task
-from code_projet.model_display import TaskManagerApp
 
 # Obtenir le répertoire dans lequel se trouve le fichier courant
 current_directory = os.path.dirname(os.path.realpath(__file__))
@@ -14,6 +12,10 @@ project_root = os.path.abspath(os.path.join(current_directory, ".."))
 
 # Ajouter le répertoire racine du projet au chemin de recherche des modules
 sys.path.append(project_root)
+
+
+from code_projet.model_task import Task
+from code_projet.model_display import TaskManagerApp
 
 
 task = Task()
