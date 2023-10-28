@@ -38,6 +38,7 @@ jobs:
     
     - name: Check PEP8 compliance
       run: |
+            poetry add --dev flake8
             poetry run flake8 code_projet/model_task.py code_projet/model_display.py
       if: runner.os == 'Linux' || runner.os == 'Windows'
 
