@@ -8,8 +8,11 @@ logging.basicConfig(filename='myapp.log', level=logging.INFO)
 
 class Task:
     # Create a dictionary to store tasks
-    task_dict = defaultdict(lambda: {'ID': None, 'description': '', 'status': 'en cours'})
+    task_dict = defaultdict(lambda: {'ID': None,
+                                     'description': '',
+                                     'status': 'en cours'})
     task_counter = 1
+
     def __init__(self):
         self.nom = ''
         self.description = ''
@@ -38,7 +41,11 @@ class Task:
         cls.task_dict[task].update(task_info)
         cls.task_counter += 1
         # Ajouter la journalisation
-        logging.info(f"Added task: {task}, ID: {task_info['ID']}, Description: {description}")
+        logging.info(
+                        f"Added task: {task}, "
+                        f"ID: {task_info['ID']}, "
+                        f"Description: {description}"
+            )
 
     @classmethod
     def complete_task(cls, *args):
@@ -82,12 +89,16 @@ class Task:
 
 if __name__ == "__main__":
     # Configurer la journalisation vers le fichier et la console
-    logging.basicConfig(filename='myapp.log',
-                        level=logging.INFO,
-                        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-
+    logging.basicConfig(
+        filename='myapp.log',
+        level=logging.INFO,
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    )
     console_handler = logging.StreamHandler()
     console_handler.setLevel(logging.INFO)
-    console_handler.setFormatter(logging.
-                                 Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+
+    console_handler.setFormatter(
+        logging.
+        Formatter('%(asctime)s -%(name)s - %(levelname)s - %(message)s')
+    )
     logging.getLogger('').addHandler(console_handler)
