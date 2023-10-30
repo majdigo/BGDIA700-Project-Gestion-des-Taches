@@ -69,7 +69,7 @@ Ce projet est sous licence MIT. Pour plus de détails, veuillez vous référer a
 
 - Majdi
 - Avicenne
-- Ettaieb
+- Adoum Mahamat
 - Xin
 
 Nous sommes toujours ouverts aux contributions. N'hésitez pas à soumettre des pull requests ou à ouvrir des issues pour toute suggestion ou bug report.
